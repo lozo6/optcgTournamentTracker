@@ -18,7 +18,6 @@ def tournament_create(request):
             return redirect('tournament_detail', pk=tournament.pk)
     else:
         form = TournamentForm()
-    print(form)  # Debugging: Print form to check context
     return render(request, 'tournaments/tournament_form.html', {'form': form})
 
 def tournament_update(request, pk):

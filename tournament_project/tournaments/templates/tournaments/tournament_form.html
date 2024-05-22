@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,6 +6,11 @@
     <link
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'tournaments/styles.css' %}"
     />
   </head>
   <body>
@@ -22,8 +28,8 @@
       <div class="card">
         <div class="card-header">
           <h1 class="card-title">
-            {% if form.instance.pk %}Edit Tournament{% else %}Add Tournament{%
-            endif %}
+            {% if form.instance.pk %} Edit Tournament {% else %} Add Tournament
+            {% endif %}
           </h1>
         </div>
         <div class="card-body">

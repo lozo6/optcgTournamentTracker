@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tournament List</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Tournament App</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'tournament_list' %}">Home</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container mt-4">
+      <h1 class="mb-4">Tournaments</h1>
+      <a class="btn btn-primary mb-4" href="{% url 'tournament_create' %}"
+        >Add Tournament</a
+      >
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Date of Event</th>
+            <th>Tournament Owner</th>
+            <th>Leader</th>
+            <th>Decklist</th>
+            <th>Entry Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for tournament in tournaments %}
+          <tr>
+            <td>{{ tournament.date_of_event }}</td>
+            <td>{{ tournament.tournament_owner }}</td>
+            <td>{{ tournament.leader }}</td>
+            <td>
+              <a href="{{ tournament.decklist }}" target="_blank">Decklist</a>
+            </td>
+            <td>{{ tournament.entry_date }}</td>
+            <td>
+              <a
+                class="btn btn-info btn-sm"
+                href="{% url 'tournament_detail' tournament.pk %}"
+                >View</a
+              >
+              <a
+                class="btn btn-warning btn-sm"
+                href="{% url 'tournament_update' tournament.pk %}"
+                >Edit</a
+              >
+              <form
+                action="{% url 'tournament_delete' tournament.pk %}"
+                method="post"
+                style="display: inline"
+              >
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

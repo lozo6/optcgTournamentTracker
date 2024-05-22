@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tournament Form</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Tournament App</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'tournament_list' %}">Home</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container mt-4">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="card-title">
+            {% if form.instance.pk %}Edit Tournament{% else %}Add Tournament{%
+            endif %}
+          </h1>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %} {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a class="btn btn-secondary" href="{% url 'tournament_list' %}"
+              >Cancel</a
+            >
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tournament Detail</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Tournament App</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'tournament_list' %}">Home</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container mt-4">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="card-title">Tournament Detail</h1>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <tr>
+              <th>Date of Event</th>
+              <td>{{ tournament.date_of_event }}</td>
+            </tr>
+            <tr>
+              <th>Tournament Owner</th>
+              <td>{{ tournament.tournament_owner }}</td>
+            </tr>
+            <tr>
+              <th>Leader</th>
+              <td>{{ tournament.leader }}</td>
+            </tr>
+            <tr>
+              <th>Decklist</th>
+              <td>
+                <a href="{{ tournament.decklist }}" target="_blank"
+                  >{{ tournament.decklist }}</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <th>Entry Date</th>
+              <td>{{ tournament.entry_date }}</td>
+            </tr>
+          </table>
+          <a
+            class="btn btn-warning"
+            href="{% url 'tournament_update' tournament.pk %}"
+            >Edit</a
+          >
+          <form
+            action="{% url 'tournament_delete' tournament.pk %}"
+            method="post"
+            style="display: inline"
+          >
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+          <a class="btn btn-primary" href="{% url 'tournament_list' %}"
+            >Back to List</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

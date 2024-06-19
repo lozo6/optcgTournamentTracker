@@ -1,6 +1,6 @@
 # optcgTournamentTracker
 
-Simple CRUD project to track OPTCG tournaments with Python Django
+Simple CRUD project to track OPTCG tournaments with Python Django and Bootstrap Framework
 
 # Tournament Management System
 
